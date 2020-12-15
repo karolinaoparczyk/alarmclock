@@ -61,6 +61,9 @@ public class AlarmclockPlugin implements MethodCallHandler {
       Integer hour = args.getInt(1);
       Integer minute = args.getInt(2);
       String message = args.getString(3);
+      ArrayList<Integer> alarmDays= new ArrayList<Integer>();
+      alarmDays.add(Calendar.SATURDAY);
+      openNewAlarm.putExtra(AlarmClock.EXTRA_DAYS, alarmDays);
 
       i.putExtra(AlarmClock.EXTRA_SKIP_UI, skipui);
       i.putExtra(AlarmClock.EXTRA_HOUR, hour);
