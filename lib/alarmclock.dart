@@ -4,20 +4,39 @@ import 'package:flutter/services.dart';
 
 class Alarmclock {
   static const MethodChannel _channel =
-      const MethodChannel('alarmclock', JSONMethodCodec());
+  const MethodChannel('alarmclock', JSONMethodCodec());
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
 
-  static Future<bool> setAlarm(
-      {bool skipui = false,
-      int hour = 12,
-      int minute = 0,
-      String message = "Flutter"}) async {
+  static Future<bool> setAlarm({bool skipui = false,
+    int hour = 12,
+    int minute = 0,
+    String message = "Flutter",
+    bool monday = true,
+    bool tuesday = true,
+    bool wednesday = true,
+    bool thursday = true,
+    bool friday = true,
+    bool saturday = true,
+    bool sunday = true,
+  }) async {
     bool ok = await _channel
-        .invokeMethod('setAlarm', <dynamic>[skipui, hour, minute, message]);
+        .invokeMethod('setAlarm', <dynamic>[
+      skipui,
+      hour,
+      minute,
+      message,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
+      sunday
+    ]);
     return ok;
   }
 }
